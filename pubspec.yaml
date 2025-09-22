@@ -1,7 +1,7 @@
 name: custom_alert
-description: "A new Flutter project."
+description: "This package provides a beautiful customizable alert dialog for Flutter applications."
 version: 0.0.1
-homepage: https://github.com/Nring-Cham-Aung/custom_alert
+repository: https://github.com/Nring-Cham-Aung/custom_alert
 
 environment:
   sdk: ^3.9.0
