@@ -256,5 +256,5 @@ class ImageSrc {
   static ImageSrc get success => ImageSrc(assetPath: _p('success.gif'), package: 'custom_alert');
   static ImageSrc get warning => ImageSrc(assetPath: _p('warning.gif'), package: 'custom_alert');
 
-  static String _p(String name) => 'assets/images/$name';
+  static String _p(String name) => 'images/$name';
 }
