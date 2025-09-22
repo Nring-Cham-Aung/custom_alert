@@ -1,7 +1,7 @@
 name: custom_alert
 description: "A new Flutter project."
 version: 0.0.1
-homepage:
+homepage: https://github.com/Nring-Cham-Aung/custom_alert
 
 environment:
   sdk: ^3.9.0
