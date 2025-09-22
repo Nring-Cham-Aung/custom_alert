@@ -5,7 +5,7 @@
 
 **Add package**
 
-```flutter pub add custom_alert```
+```flutter pub add flutter_custom_alert```
 
 
 ## Usage

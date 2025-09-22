@@ -246,15 +246,15 @@ class ImageSrc {
   final String? package;
   const ImageSrc({this.assetPath, this.filePath, this.url, this.package});
 
-  static ImageSrc get confirm => ImageSrc(assetPath: _p('confirm.gif'), package: 'custom_alert');
-  static ImageSrc get delete => ImageSrc(assetPath: _p('delete.gif'), package: 'custom_alert');
-  static ImageSrc get donot => ImageSrc(assetPath: _p('do_not.gif'), package: 'custom_alert');
-  static ImageSrc get error404 => ImageSrc(assetPath: _p('error_404.gif'), package: 'custom_alert');
-  static ImageSrc get error => ImageSrc(assetPath: _p('error.gif'), package: 'custom_alert');
-  static ImageSrc get info => ImageSrc(assetPath: _p('info.gif'), package: 'custom_alert');
-  static ImageSrc get nodata => ImageSrc(assetPath: _p('no_data.gif'), package: 'custom_alert');
-  static ImageSrc get success => ImageSrc(assetPath: _p('success.gif'), package: 'custom_alert');
-  static ImageSrc get warning => ImageSrc(assetPath: _p('warning.gif'), package: 'custom_alert');
+  static ImageSrc get confirm => ImageSrc(assetPath: _p('confirm.gif'), package: 'flutter_custom_alert');
+  static ImageSrc get delete => ImageSrc(assetPath: _p('delete.gif'), package: 'flutter_custom_alert');
+  static ImageSrc get donot => ImageSrc(assetPath: _p('do_not.gif'), package: 'flutter_custom_alert');
+  static ImageSrc get error404 => ImageSrc(assetPath: _p('error_404.gif'), package: 'flutter_custom_alert');
+  static ImageSrc get error => ImageSrc(assetPath: _p('error.gif'), package: 'flutter_custom_alert');
+  static ImageSrc get info => ImageSrc(assetPath: _p('info.gif'), package: 'flutter_custom_alert');
+  static ImageSrc get nodata => ImageSrc(assetPath: _p('no_data.gif'), package: 'flutter_custom_alert');
+  static ImageSrc get success => ImageSrc(assetPath: _p('success.gif'), package: 'flutter_custom_alert');
+  static ImageSrc get warning => ImageSrc(assetPath: _p('warning.gif'), package: 'flutter_custom_alert');
 
   static String _p(String name) => 'images/$name';
 }
