@@ -6,6 +6,7 @@ class CustomAlert {
   static Future<void> show({
     required BuildContext context,
     bool disableBackBtn = false,
+    double width = 300.0,
     bool? resizeToAvoidBottomInset,
     CustomAlertImage image = const CustomAlertImage(),
     Text? title,
@@ -25,10 +26,10 @@ class CustomAlert {
     void Function()? onConfirmBtnTap,
     Curve curve = Curves.elasticOut,
     Curve reverseCurve = Curves.easeOutExpo,
+    bool barrierDismissible = false
   }) async {
     await showGeneralDialog(
       context: context,
-      barrierDismissible: false,
       barrierColor: Colors.black26,
       pageBuilder: (context, animation, secondaryAnimation) {
         return PopScope(
@@ -36,103 +37,113 @@ class CustomAlert {
           child: Scaffold(
             backgroundColor: Colors.transparent,
             resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-            body: Center(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Container(
-                  width: 300,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(borderRadius),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      image._build(borderRadius),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 20,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: alignment,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: title == null ? 0 : titleOffset,
-                              ),
-                              child:
-                                  title ??
-                                  SizedBox(
-                                    child: content == null
-                                        ? Text(
-                                            'Title',
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          )
-                                        : const SizedBox(),
-                                  ),
-                            ),
-
-                            SizedBox(
-                              height: (title == null && content== null) || (title != null && content != null) ? contentOffset : 0,
-                            ),
-
-                            Padding(
-                              padding: EdgeInsets.only(
-                                bottom:
-                                    content is Text ||
-                                        (title == null && content == null)
-                                    ? 20
-                                    : 0,
-                              ),
-                              child:
-                                  content ??
-                                  SizedBox(
-                                    child: title == null
-                                        ? Text('alert content')
-                                        : null,
-                                  ),
-                            ),
-
-                            actionWidget ??
-                                CustomAlertActions(
-                                  alignment: actionAlignment,
-                                  actions: [
-                                    showCancelBtn
-                                        ? TextButton(
-                                            style: TextButton.styleFrom(
-                                              foregroundColor: Colors.grey,
-                                            ),
-                                            onPressed:
-                                                onCancelBtnTap ??
-                                                () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                            child: Text(cancelBtnText),
-                                          )
-                                        : const SizedBox(),
-
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: confirmBtnColor,
-                                        foregroundColor: confirmBtnTextColor,
-                                      ),
-                                      onPressed:
-                                          onConfirmBtnTap ??
-                                          () {
-                                            Navigator.of(context).pop();
-                                          },
-                                      child: Text(confirmBtnText),
-                                    ),
-                                  ],
-                                ),
-                          ],
-                        ),
+            body: GestureDetector(
+              onTap: barrierDismissible? () {
+                Navigator.pop(context);
+              } : null,
+              child: Container(
+                color: Colors.transparent,
+                alignment: Alignment.center,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Container(
+                      width: width,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(borderRadius),
                       ),
-                    ],
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          image._build(borderRadius),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 20,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: alignment,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: title == null ? 0 : titleOffset,
+                                  ),
+                                  child:
+                                      title ??
+                                      SizedBox(
+                                        child: content == null
+                                            ? Text(
+                                                'Title',
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : const SizedBox(),
+                                      ),
+                                ),
+                                
+                                SizedBox(
+                                  height: (title == null && content== null) || (title != null && content != null) ? contentOffset : 0,
+                                ),
+                                
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    bottom:
+                                        content is Text ||
+                                            (title == null && content == null)
+                                        ? 20
+                                        : 0,
+                                  ),
+                                  child:
+                                      content ??
+                                      SizedBox(
+                                        child: title == null
+                                            ? Text('alert content')
+                                            : null,
+                                      ),
+                                ),
+                                
+                                actionWidget ??
+                                    CustomAlertActions(
+                                      alignment: actionAlignment,
+                                      actions: [
+                                        showCancelBtn
+                                            ? TextButton(
+                                                style: TextButton.styleFrom(
+                                                  foregroundColor: Colors.grey,
+                                                ),
+                                                onPressed:
+                                                    onCancelBtnTap ??
+                                                    () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                child: Text(cancelBtnText),
+                                              )
+                                            : const SizedBox(),
+                                
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: confirmBtnColor,
+                                            foregroundColor: confirmBtnTextColor,
+                                          ),
+                                          onPressed:
+                                              onConfirmBtnTap ??
+                                              () {
+                                                Navigator.of(context).pop();
+                                              },
+                                          child: Text(confirmBtnText),
+                                        ),
+                                      ],
+                                    ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
